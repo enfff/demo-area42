@@ -13,7 +13,7 @@ from ultralytics import YOLO
 # Configurazione
 
 # POST_URL = "http://192.168.1.159:30033/api/robotic_orchestrator/submit_task"  # production URL
-POST_URL = "http://localhost:8000/test"  # Local testing endpoint
+POST_URL = "http://192.168.1.233/api/robotic_orchestrator/submit_task"  # Local testing endpoint.
 YOLO_CONFIDENCE_THRESHOLD = 0.6
 DETECTIONS_THRESHOLD = 5
 SPOT_SERVER_HOST = "0.0.0.0"
