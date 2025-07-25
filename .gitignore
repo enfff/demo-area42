@@ -1,0 +1,72 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# YOLO/ML models (these are large files)
+*.pt
+*.weights
+*.onnx
+*.engine
+
+# Test images (optional - uncomment if you don't want to include test images)
+# *.jpg
+# *.jpeg
+# *.png
+# *.bmp
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Configuration files with sensitive data
+config.json
+secrets.json
+.env.local
+.env.production
+
+# Output directories
+output/
+results/
+runs/
