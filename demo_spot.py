@@ -117,7 +117,7 @@ def receive_spot_image():
         print(f"[RECEIVER] Error receiving image: {e}")
         return {"error": str(e)}, 500
 
-COMMENTED OUT FOR LOCAL TESTING - FLASK SERVER
+
 def receive_image_from_spot():
     """
     Runs Flask server to receive images from SPOT robot via POST requests.
@@ -125,50 +125,49 @@ def receive_image_from_spot():
     """
     print(f"[RECEIVER] Starting SPOT image server on {SPOT_SERVER_HOST}:{SPOT_SERVER_PORT}")
     app.run(host=SPOT_SERVER_HOST, port=SPOT_SERVER_PORT, debug=False, threaded=True)
-        
 
-# FOR TESTING PURPOSES - LOAD LOCAL IMAGES
-def receive_image_from_spot():
-    """
-    Simulates receiving images from SPOT robot by loading local test images.
-    Loads images one by one from the test directory.
-    """
-    print(f"[RECEIVER] Loading test images from {TEST_IMAGES_PATH}")
+# # FOR TESTING PURPOSES - LOAD LOCAL IMAGES
+# def receive_image_from_spot():
+#     """
+#     Simulates receiving images from SPOT robot by loading local test images.
+#     Loads images one by one from the test directory.
+#     """
+#     print(f"[RECEIVER] Loading test images from {TEST_IMAGES_PATH}")
     
-    # Get list of all JPG images
-    image_files = glob.glob(TEST_IMAGES_PATH)
-    image_files.sort()  # Sort for consistent order
+#     # Get list of all JPG images
+#     image_files = glob.glob(TEST_IMAGES_PATH)
+#     image_files.sort()  # Sort for consistent order
     
-    if not image_files:
-        print(f"[RECEIVER] ❌ No images found in {TEST_IMAGES_PATH}")
-        return
+#     if not image_files:
+#         print(f"[RECEIVER] ❌ No images found in {TEST_IMAGES_PATH}")
+#         return
     
-    print(f"[RECEIVER] Found {len(image_files)} test images")
+#     print(f"[RECEIVER] Found {len(image_files)} test images")
     
-    image_index = 0
-    while not STOP_EVENT.is_set():
-        if image_index >= len(image_files):
-            image_index = 0  # Loop back to first image
-            print("[RECEIVER] 🔄 Restarting image sequence...")
+#     image_index = 0
+#     while not STOP_EVENT.is_set():
+#         if image_index >= len(image_files):
+#             image_index = 0  # Loop back to first image
+#             print("[RECEIVER] 🔄 Restarting image sequence...")
         
-        image_path = image_files[image_index]
-        image_name = os.path.basename(image_path)
+#         image_path = image_files[image_index]
+#         image_name = os.path.basename(image_path)
         
-        try:
-            # Load image using OpenCV
-            image = cv2.imread(image_path)
-            if image is not None:
-                # Convert BGR to RGB (OpenCV loads as BGR by default)
-                image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-                print(f"[RECEIVER] 📸 Loaded: {image_name} - Shape: {image_rgb.shape}")
-                IMAGE_QUEUE.put(image_rgb)
-            else:
-                print(f"[RECEIVER] ❌ Failed to load: {image_name}")
-        except Exception as e:
-            print(f"[RECEIVER] ❌ Error loading {image_name}: {e}")
+#         try:
+#             # Load image using OpenCV
+#             image = cv2.imread(image_path)
+#             if image is not None:
+#                 # Convert BGR to RGB (OpenCV loads as BGR by default)
+#                 image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+#                 print(f"[RECEIVER] 📸 Loaded: {image_name} - Shape: {image_rgb.shape}")
+#                 IMAGE_QUEUE.put(image_rgb)
+#             else:
+#                 print(f"[RECEIVER] ❌ Failed to load: {image_name}")
+#         except Exception as e:
+#             print(f"[RECEIVER] ❌ Error loading {image_name}: {e}")
         
-        image_index += 1
-        time.sleep(3)  # Wait 3 seconds between images
+#         image_index += 1
+#         time.sleep(3)  # Wait 3 seconds between images
         
 
 # DON'T DELETE THIS IT'S FOR TESTING PURPOSES
