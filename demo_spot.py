@@ -247,12 +247,56 @@ def send_alert():
     Send POST request to backend.
     Replace payload with your actual format.
     """
-    payload = {
-        "message": "Positive detection from SPOT robot.",
-        "timestamp": time.time()
-    }
+    
+    delivery_payload_template = [
+        {
+            "category": "delivery",
+            "task": {
+                "pickup": [
+                    {
+                        "place": "ur_load",
+                        "payload": [
+                            {
+                                "sku": "pliers",
+                                "quantity": 1
+                            },
+                            {
+                                "sku": "fence",
+                                "quantity": 1
+                            },
+                            {
+                                "sku": "pincher",
+                                "quantity": 1
+                            }
+                        ]
+                    }
+                ],
+                "dropoff": [  # Qui inseriremo dinamicamente il valore passato
+                    {
+                        "place": "p2",
+                        "payload": [
+                            {
+                                "sku": "pliers",
+                                "quantity": 1
+                            },
+                            {
+                                "sku": "fence",
+                                "quantity": 1
+                            },
+                            {
+                                "sku": "pincher",
+                                "quantity": 1
+                            }
+                        ]
+                    }
+                ],
+                "millis": 1
+            }
+        }
+    ]
+    
     try:
-        response = requests.post(POST_URL, json=payload)
+        response = requests.post(POST_URL, json=delivery_payload_template)
         print(f"[POST] Sent alert. Status: {response.status_code}")
     except Exception as e:
         print(f"[POST] Failed to send alert: {e}")
