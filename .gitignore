@@ -43,7 +43,6 @@ Thumbs.db
 logs/
 
 # YOLO/ML models (these are large files)
-*.pt
 *.weights
 *.onnx
 *.engine
